@@ -6,34 +6,19 @@
 # Tips: använd minustecken (-) för att exkludera ord, t.ex. "devops -senior"
 
 keywords:
-  # LIA och praktik
   - "LIA IT"
   - "LIA DevOps"
   - "LIA Cloud"
   - "LIA infrastruktur"
+  - "LIA systemadministration"
+  - "LIA Linux"
+  - "LIA drift"
+  - "LIA kubernetes"
+  - "praktikplats IT"
   - "praktikplats systemutveckling"
   - "praktik devops"
-  
-  # Junior-roller
-  - "junior devops"
-  - "junior systemadministratör"
-  - "junior cloud"
-  - "junior cloud engineer"
-  
-  # Trainee och ingångsroller
-  #- "trainee IT"
-  #- "graduate program"
-  
-  # Specifika roller
-  - "devops utvecklare -senior -lead"
-  - "systemautomatiserare -senior -erfaren"
-  - "driftsautomatiserare -senior -erfaren"
-  - "configuration manager -senior -lead"
-  
-  # Tekniska roller utan erfarenhetskrav
-  - "devops engineer -senior -lead -5 år"
-  - "cloud engineer -senior -lead -erfaren"
-  - "systemadministratör -senior -lead"
+  - "praktik cloud"
+  - "praktik drift"
 
 # Platser att söka på (kommunnamn)
 locations:
@@ -43,9 +28,24 @@ locations:
   - Huddinge
   - Nacka
   - Lidingö
+  - Kista
+  - Täby
+  - Järfälla
+  - Danderyd
+  - Tyresö
+  - Haninge
+  - Botkyrka
+  - Södertälje
+  - Uppsala
 
 # Hur många resultat per sökning (max 100)
 limit: 50
+
+# KRAV - Minst ETT av dessa ord MÅSTE finnas i jobbtitel eller företagsnamn
+# Jobb som inte matchar filtreras bort helt
+required_words:
+  - lia
+  - praktik
 
 # FILTRERING - Vilka jobb ska visas?
 
