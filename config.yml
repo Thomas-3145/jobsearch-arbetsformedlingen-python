@@ -2,23 +2,22 @@
 # config.yml
 # Konfigurera din jobbsökning här
 
-# Sökord - lägg till vad du söker efter
-# Tips: använd minustecken (-) för att exkludera ord, t.ex. "devops -senior"
-
 keywords:
-  - "LIA IT"
   - "LIA DevOps"
-  - "LIA Cloud"
+  - "LIA cloud"
   - "LIA infrastruktur"
-  - "LIA systemadministration"
+  - "LIA IT"
   - "LIA Linux"
   - "LIA drift"
   - "LIA kubernetes"
-  - "praktikplats IT"
-  - "praktikplats systemutveckling"
-  - "praktik devops"
+  - "LIA automation"
+  - "LIA systemadministration"
+  - "praktik DevOps"
   - "praktik cloud"
+  - "praktik infrastruktur"
+  - "praktik IT"
   - "praktik drift"
+  - "praktikplats IT"
 
 # Platser att söka på (kommunnamn)
 locations:
@@ -42,14 +41,12 @@ locations:
 limit: 50
 
 # KRAV - Minst ETT av dessa ord MÅSTE finnas i jobbtitel eller företagsnamn
-# Jobb som inte matchar filtreras bort helt
 required_words:
   - lia
   - praktik
 
-# FILTRERING - Vilka jobb ska visas?
-
-# Minst ETT av dessa ord måste finnas i jobbtitel eller företagsnamn
+# FILTRERING - Minst ETT av dessa ord måste finnas i jobbtitel eller företagsnamn
+# Anpassat efter Thomas stack: DevOps, Kubernetes, Terraform, Ansible, GitOps, monitoring
 include_words:
   - devops
   - cloud
@@ -57,24 +54,20 @@ include_words:
   - docker
   - terraform
   - ansible
-  - aws
-  - azure
-  - gcp
-  - jenkins
-  - gitlab
+  - argocd
+  - gitops
+  - github actions
   - ci/cd
   - linux
   - infrastructure
-  - drift
-  - junior
-  - trainee
-  - graduate
-  - lia
-  - praktik
-  - systemautomatiserare
-  - devops engineer
-  - cloud engineer
   - infrastruktur
+  - drift
+  - automation
+  - prometheus
+  - grafana
+  - aws
+  - azure
+  - gcp
 
 # Om NÅGOT av dessa ord finns så filtreras jobbet bort
 exclude_words:
@@ -89,6 +82,7 @@ exclude_words:
   - busschaufför
   - vård
   - sjuk
+  - tand
   - lärare
   - butik
   - lager
@@ -96,12 +90,10 @@ exclude_words:
   - snickare
   - elektriker
   - städ
-  - chef
   - senior
   - lead
   - architect
   - principal
-  - specialist
   - säkerhetsprövning
   - security clearance
   - 5 år
@@ -113,14 +105,7 @@ exclude_words:
   - sales
   - support
   - key account
-  - business administration
   - logistik
-  - studentprogram
   - helpdesk
   - servicedesk
-
-# TIPS:
-# 1. Lägg till fler sökord under keywords som passar din profil
-# 2. Ändra locations till dina önskade kommuner
-# 3. Anpassa include_words och exclude_words för bättre träffar
-# 4. Kör med: python main.py (från src-mappen)
+  - compliance

@@ -58,6 +58,7 @@ def fetch_jobs(keyword, location, limit=50):
                     break
             
             if not should_skip:
+                job["_description_text"] = description
                 filtered.append(job)
         
         print(f"  Hittade {len(filtered)} jobb i {location} (totalt fanns {total})")

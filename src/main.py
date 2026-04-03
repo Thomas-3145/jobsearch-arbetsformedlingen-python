@@ -20,12 +20,13 @@ def _whole_word_match(word, text):
     return bool(re.search(r'\b' + re.escape(word.lower()) + r'\b', text))
 
 
-def check_if_relevant(title, company, include_words, exclude_words, required_words=None):
-    text = f"{title} {company}".lower()
-    if required_words and not any(_whole_word_match(w, text) for w in required_words):
+def check_if_relevant(title, company, description, include_words, exclude_words, required_words=None):
+    title_company = f"{title} {company}".lower()
+    full_text = f"{title_company} {description}".lower()
+    if required_words and not any(w.lower() in full_text for w in required_words):
         return False
-    has_include = any(word.lower() in text for word in include_words)
-    has_exclude = any(word.lower() in text for word in exclude_words)
+    has_include = any(word.lower() in full_text for word in include_words)
+    has_exclude = any(word.lower() in title_company for word in exclude_words)
     return has_include and not has_exclude
 
 
@@ -56,6 +57,7 @@ def get_jobs(keywords, locations, limit):
                     "location": workplace.get("municipality", ""),
                     "url": url,
                     "published": job.get("publication_date", ""),
+                    "description": job.get("_description_text", ""),
                 })
 
     return all_jobs
@@ -81,7 +83,7 @@ def main():
     print("Filtrerar...")
     filtered_jobs = [
         job for job in jobs
-        if check_if_relevant(job["title"], job["company"], include_words, exclude_words, required_words)
+        if check_if_relevant(job["title"], job["company"], job.get("description", ""), include_words, exclude_words, required_words)
     ]
     print(f"Hittade {len(filtered_jobs)} relevanta jobb")
 
@@ -107,8 +109,10 @@ def main():
     print(f"Hittade {len(new_jobs)} nya jobb att lägga till")
 
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    output_keys = ["keyword", "title", "company", "location", "url", "published", "date_added"]
     for job in new_jobs:
         job["date_added"] = now
+    new_jobs = [{k: job[k] for k in output_keys} for job in new_jobs]
 
     # Bygg DataFrame: gamla + nya
     if os.path.exists(csv_file):
