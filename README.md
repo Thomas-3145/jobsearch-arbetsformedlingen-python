@@ -26,10 +26,9 @@ pip install pandas pyyaml requests openpyxl
 
 1. Redigera `config.yml` och lägg till dina egna sökord och platser
 
-2. Kör scriptet från `src`-mappen:
+2. Kör scriptet:
 ```bash
-cd src
-python main.py
+python src/main.py
 ```
 
 3. Öppna `jobs.xlsx` eller `jobs.csv` för att se resultaten
@@ -48,8 +47,8 @@ python main.py
 ```
 jobsearch-arbetsformedlingen-python/
 ├── config.yml          # Konfiguration
-├── jobs.csv           # Resultat (skapas automatiskt)
-├── jobs.xlsx          # Resultat (skapas automatiskt)
+├── jobs.csv           # Resultat (skapas automatiskt, gitignored)
+├── jobs.xlsx          # Resultat (skapas automatiskt, gitignored)
 └── src/
     ├── main.py        # Huvudscript
     └── api.py         # API-anrop till Arbetsförmedlingen
