@@ -3,6 +3,7 @@
 
 
 import os
+import re
 import yaml
 import pandas as pd
 from datetime import datetime
@@ -15,8 +16,14 @@ def load_config():
         return yaml.safe_load(f)
 
 
-def check_if_relevant(title, company, include_words, exclude_words):
+def _whole_word_match(word, text):
+    return bool(re.search(r'\b' + re.escape(word.lower()) + r'\b', text))
+
+
+def check_if_relevant(title, company, include_words, exclude_words, required_words=None):
     text = f"{title} {company}".lower()
+    if required_words and not any(_whole_word_match(w, text) for w in required_words):
+        return False
     has_include = any(word.lower() in text for word in include_words)
     has_exclude = any(word.lower() in text for word in exclude_words)
     return has_include and not has_exclude
@@ -63,6 +70,7 @@ def main():
     limit = config.get("limit", 50)
     include_words = config.get("include_words", [])
     exclude_words = config.get("exclude_words", [])
+    required_words = config.get("required_words", [])
 
     jobs = get_jobs(keywords, locations, limit)
 
@@ -73,7 +81,7 @@ def main():
     print("Filtrerar...")
     filtered_jobs = [
         job for job in jobs
-        if check_if_relevant(job["title"], job["company"], include_words, exclude_words)
+        if check_if_relevant(job["title"], job["company"], include_words, exclude_words, required_words)
     ]
     print(f"Hittade {len(filtered_jobs)} relevanta jobb")
 
